@@ -1,0 +1,49 @@
+#header {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+}
+#header img {
+  height: 100%;
+}
+.header-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container{
+  display:flex;
+}
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 25px;
+  margin-top: 25px;
+  max-height: 90vh;
+  width: 50%;
+  overflow: scroll;
+}
+
+.movie-card{
+  height: 600px;
+  width: 400px;
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.movie-card img {
+  max-width: 300px;
+  max-height: 500px;
+}
+
+.movie-card h2 {
+  font-size: x-large;
+}
