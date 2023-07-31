@@ -1,13 +1,16 @@
 import { useState, Fragment, useEffect } from "react";
-import axios from "axios";
+import axios from 'axios'
 import Header from "./components/Header";
 import MovieList from "./components/MovieList";
 import WatchList from "./components/WatchList";
+import MovieReview from "./components/MovieReview";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
   const [watchList, setWatchList] = useState([]);
+  const [inWatchList, setInWatchList] = useState(false)
 
   const movieDB = async () => {
     try {
@@ -28,6 +31,7 @@ function App() {
 
   const addToWatchList = (movie) => {
     setWatchList([...watchList, movie]);
+    setInWatchList(true)
   };
 
   const removeWatchList = (movie) => {
@@ -35,25 +39,53 @@ function App() {
       return mov.id !== movie.id;
     });
     setWatchList(updatedList);
+    setInWatchList(false)
   };
 
   return (
     <Fragment>
       <Header />
-      <main className="main-container">
-        <MovieList
-          movieList={movieList}
-          watchList={watchList}
-          addToWatchList={addToWatchList}
-          removeWatchList={removeWatchList}
+      <Routes>
+        <Route
+          index
+          element={
+            <MovieList
+              movieList={movieList}
+              watchList={watchList}
+              addToWatchList={addToWatchList}
+              removeWatchList={removeWatchList}
+              inWatchList={inWatchList}
+            />
+          }
         />
-        <WatchList
-          watchList={watchList}
-          removeWatchList={removeWatchList}
+        <Route
+          path="watchList"
+          element={
+            <WatchList
+              watchList={watchList}
+              removeWatchList={removeWatchList}
+              inWatchList={inWatchList}
+            />
+          }
         />
-      </main>
+        <Route path="review" element={<MovieReview />} />
+      </Routes>
     </Fragment>
   );
 }
 
 export default App;
+
+{
+  /* <main className="main-container">
+<MovieList
+  movieList={movieList}
+  watchList={watchList}
+  addToWatchList={addToWatchList}
+  removeWatchList={removeWatchList}
+/>
+<WatchList
+  
+/>
+</main> */
+}
