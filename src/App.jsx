@@ -39,7 +39,7 @@ function App() {
       return mov.id !== movie.id;
     });
     setWatchList(updatedList);
-    setInWatchList(false)
+    // setInWatchList(false)
   };
 
   return (

@@ -1,6 +1,8 @@
 const MovieReview = () => {
     return (
-        <p>Review a Movie</p>
+        <form>
+            
+        </form>
     )
 }
 

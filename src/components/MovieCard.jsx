@@ -1,28 +1,38 @@
+import { useState } from "react";
 
+const MovieCard = ({ mov, addToWatchList, removeWatchList, watchList }) => {
+  const [details, setDetails] = useState(false);
 
-const MovieCard = ({mov, addToWatchList, removeWatchList, watchList}) => {
+  const clickHandler = () => {
+    setDetails(!details)
+  }
 
-    const addMovieHandler = (mov) => {
-        addToWatchList(mov)
-    }
+  const theMovieCard = details ? (
+    <div className="movie-card">
+      <h2>{mov.title}</h2>
+      <p>{mov.overview}</p>
+      <span>
+        <h3>{mov.vote_average}</h3>
+        <h3>{mov.release_date}</h3>
+      </span>
+      <button onClick={()=>{clickHandler()}}>Return</button>
+    </div>
+  ) : (
+    <div className="movie-card">
+      <h2>{mov.title}</h2>
+      <img
+        src={`https://image.tmdb.org/t/p/original${mov.poster_path}`}
+        alt={`${mov.original_title}'s Poster`}
+      />
+      <button onClick={()=>{clickHandler()}}>See Details</button>
+    </div>
+  );
 
-    const removeMovieHandler = (mov) => {
-        removeWatchList(mov)
-    }
+  return (
+    <>
+    {theMovieCard}
+    </>
+  );
+};
 
-    // const isWatchList = watchList.filter(movie => {
-    //     return movie.id === mov.id
-    // })
-
-    // const button = isWatchList.length === 0 ? <button onClick={()=>{addMovieHandler(mov)}}>add</button> : <button onClick={()=>{removeMovieHandler(mov)}}>remove</button>
-    
-    return (
-        <div className="movie-card">
-            <h2>{mov.title}</h2>
-            <img src={`https://image.tmdb.org/t/p/original${mov.poster_path}`} alt={`${mov.original_title}'s Poster`} />
-            {/* {button} */}
-        </div>
-    )
-}
-
-export default MovieCard
+export default MovieCard;
