@@ -6,6 +6,7 @@ import WatchList from "./components/WatchList";
 import MovieReview from "./components/MovieReview";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import Popup from "./components/Modal/Popup";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
