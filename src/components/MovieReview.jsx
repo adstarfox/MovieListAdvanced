@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import axios from 'axios'
 
 const MovieReview = () => {
   const initialValues = {
@@ -9,7 +10,7 @@ const MovieReview = () => {
   };
 
   const onSubmit = (values) => {
-    console.log(values)
+    axios.post('http://localhost:5050/review', values)
   };
 
   return (

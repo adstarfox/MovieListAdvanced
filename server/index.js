@@ -8,7 +8,11 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(cors())
 
+const {addReview} = require('./Controller/controller')
+
 // require controller file here
+app.get('/')
+app.post('/review', addReview)
 
 // set up endpoints
 
