@@ -23,7 +23,7 @@ module.exports = {
             allowNull: false
         },
         review: {
-            type: DataTypes.TEXT('medium'),
+            type: DataTypes.TEXT,
             allowNull: false
         }
     })
