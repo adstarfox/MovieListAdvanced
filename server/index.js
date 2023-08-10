@@ -14,12 +14,14 @@ app.use(cors())
 User.hasMany(Review)
 Review.belongsTo(User)
 
-const {addReview} = require('./Controller/controller')
+const {addReview, addUser, loginUser} = require('./Controller/controller')
 
 // require controller file here
 app.get('/')
 app.post('/review', addReview)
 
+app.post('/user', addUser)
+app.post('/login', loginUser)
 // set up endpoints
 db.sync()
     .then(() => {

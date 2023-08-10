@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import MovieList from "./components/MovieList";
 import WatchList from "./components/WatchList";
 import MovieReview from "./components/MovieReview";
+import Login from './components/Login'
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Popup from "./components/Modal/Popup";
@@ -70,6 +71,7 @@ function App() {
           }
         />
         <Route path="review" element={<MovieReview />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </Fragment>
   );
