@@ -2,6 +2,23 @@ const { User } = require("./models/user");
 const { Review } = require("./models/reviews");
 const bcrypt = require('bcrypt');
 const user = require("./models/user");
+const SECRET = process.env.SECRET
+const jwt = require('jsonwebtoken')
+// const {createToken} = require('./auth')
+
+
+const generateToken = (info) => {
+  return jwt.sign(
+      {
+          username: info.username,
+          password: info.password
+      },
+      SECRET,
+      {
+          expiresIn: '24h'
+      }
+  )
+}
 
 module.exports = {
   addReview: async (req, res) => {
@@ -46,7 +63,10 @@ module.exports = {
     }
     try {
         if (await bcrypt.compare(password, foundUser.password)){
-            res.status(200).send('We got em')
+          // console.log('New Info:', req.body)
+          let token = generateToken(req.body)
+            console.log('Token2:', token)
+            res.status(200).send(token)
         } else {
             res.status(200).send('Password Incorrect')
         }

@@ -1,10 +1,12 @@
 import { useState } from "react"
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [button, setButton] = useState(false)
+    const navigate = useNavigate()
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -23,6 +25,8 @@ const Login = () => {
         axios.post('http://localhost:5050/login', user)
             .then((res) => {
                 // console.log(res.data)
+                localStorage.setItem('userToken', res.data)
+                navigate('/watchList')
                 alert(res.data)
             })
             .catch(err => console.log(err))
